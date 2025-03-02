@@ -394,6 +394,7 @@ VR
 Vue
 Web3
 WebRTC
+Weibull
 Weight & Bias
 While
 Whiteboarding
