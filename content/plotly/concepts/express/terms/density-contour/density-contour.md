@@ -1,92 +1,42 @@
 ---
-Title: '.density_contour()'
-Description: 'Creates a 2D density contour plot that shows how data points are concentrated in a two-dimensional space.'
+Title: 'Weibull Distribution'
+Description: 'The Weibull distribution is a continuous probability distribution frequently used in reliability and survival analysis to model time-to-failure data.'
 Subjects:
   - 'Data Science'
-  - 'Data Visualization'
+  - 'AI'
 Tags:
-  - 'Plotly'
-  - 'Python'
+  - 'Data Distributions'
+  - 'Weibull'
+  - 'Statistics'
 CatalogContent:
-  - 'learn-plotly'
-  - 'paths/data-analysis'
+  - 'learn-data-science'
+  - 'paths/data-science'
 ---
 
-The **`.density_contour()`** function in Plotly Express creates a contour plot that visualizes the density of data points in a two-dimensional space. It highlights regions where points cluster, helping to reveal patterns within the data.
-
-## Syntax
-
-```pseudo
-plotly.express.density_contour(
-  data_frame=None,
-  x=None,
-  y=None,
-  z=None,
-  color=None,
-  facet_row=None,
-  facet_col=None,
-  facet_col_wrap=None,
-  marginal=None,
-  trendline=None,
-  histfunc=None,
-  histnorm=None,
-  cumulative=None,
-  nbinsx=None,
-  nbinsy=None,
-  range_x=None,
-  range_y=None,
-  labels=None,
-  title=None,
-  template=None,
-  width=None,
-  height=None,
-  **kwargs
-)
-```
-
-| **Parameter**            | **Description**                                                                        |
-| ------------------------ | -------------------------------------------------------------------------------------- |
-| `data_frame`             | A DataFrame or array-like object containing the data.                                  |
-| `x`, `y`, `z`            | Columns from `data_frame` (or array-like object) for the x, y, and z axes.             |
-| `color`                  | Sets the color for contours based on a variable or value.                              |
-| `facet_row`, `facet_col` | Splits the figure into subplots along rows or columns based on a categorical variable. |
-| `nbinsx`, `nbinsy`       | Number of bins along the x and y axes, which control the contour resolution.           |
-| `range_x`, `range_y`     | Helps manually set the range for the x and y axes.                                     |
-| `labels`                 | Customizes axis labels and legend entries.                                             |
-| `title`                  | Specifies a title for the figure.                                                      |
-| `template`               | Applies a predefined figure template (e.g., `"plotly"`, `"ggplot2"`, or `"seaborn"`).  |
-| `width`, `height`        | Sets the figure's width and height in pixels.                                          |
-| `**kwargs`               | Additional keyword arguments to further modify the plot's appearance or behavior.      |
+The **Weibull distribution** is a flexible continuous probability distribution commonly used to model the time until an event occurs, such as equipment failure or life expectancy. Its shape is determined by its parameters, and it can model various types of data behavior. The distribution is especially popular in reliability engineering and survival analysis.
 
 ## Example
 
-The example below creates a 2D density contour plot using randomly generated data:
+The example below generates random samples from a Weibull distribution using NumPy and visualizes the results with a histogram. This demonstration illustrates how the data conforms to the Weibull distribution's characteristics.
 
 ```python
-import plotly.express as px
 import numpy as np
-import pandas as pd
+import matplotlib.pyplot as plt
 
-# Generate random data
-np.random.seed(42)
-df = pd.DataFrame({
-  "x": np.random.randn(500),
-  "y": np.random.randn(500)
-})
+# Set the shape parameter for the Weibull distribution
+shape = 2.0
 
-# Create a 2D density contour plot
-fig = px.density_contour(
-  data_frame=df,
-  x="x",
-  y="y",
-  nbinsx=30,
-  nbinsy=30,
-  title="2D Density Contour Plot"
-)
+# Generate 1,000 random samples from the Weibull distribution
+data = np.random.weibull(shape, 1000)
 
-fig.show()
+# Plot the histogram of the generated data
+plt.hist(data, bins=30, density=True, alpha=0.6, color='purple', edgecolor='black')
+plt.title(f"Weibull Distribution (shape={shape})")
+plt.xlabel("Value")
+plt.ylabel("Density")
+plt.show()
 ```
 
-This code generates a contour plot that illustrates the density of data points across a two-dimensional space. Here's what the output looks like:
+The above example produces the following output:
 
-![The output for the above example](https://raw.githubusercontent.com/Codecademy/docs/main/media/2D-Density-Contour-Plot.png)
+![The output for the above example](https://raw.githubusercontent.com/Codecademy/docs/main/media/weibull-distribution.png)
